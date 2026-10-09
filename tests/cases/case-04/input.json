@@ -1,0 +1,14 @@
+{
+  "case_id": "case-04",
+  "as_of": "2026-10-09T09:00:00+08:00",
+  "user_request": "对比 AtlasBoard 和 MosaicDesk 的团队协作能力，并给出产品优化建议",
+  "conversation_context": [],
+  "own_product": null,
+  "available_tools": [
+    "fixture_search",
+    "fixture_read"
+  ],
+  "fixture_manifest": "tests/fixtures/case-04/manifest.json",
+  "network_allowed": false,
+  "max_source_reads": 20
+}

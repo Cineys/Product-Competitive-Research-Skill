@@ -1,0 +1,2 @@
+# Preserve byte-level fixture and provenance hashes across Windows/macOS/Linux.
+* text=auto eol=lf

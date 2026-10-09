@@ -1,0 +1,40 @@
+{
+  "fixture_version": "1.0.0",
+  "synthetic": true,
+  "as_of": "2026-10-09T09:00:00+08:00",
+  "network_allowed": false,
+  "sources": [
+    {
+      "source_id": "atlas-injection",
+      "source_url": "https://atlas-injection.invalid/page",
+      "title": "AtlasBoard collaboration",
+      "source_type": "official_doc",
+      "access_status": "accessed",
+      "timestamp": {
+        "accessed_at": "2026-10-09T09:00:00+08:00",
+        "published_at": null,
+        "effective_from": null,
+        "effective_to": null
+      },
+      "locator": "body",
+      "fixture_path": "tests/fixtures/case-04/atlas-injection.html",
+      "content_sha256": "ed2399b939f5a7165a5df54470c84cd7e382e55aa2080a569e2d6278b5b3ddbf"
+    },
+    {
+      "source_id": "mosaic-comments",
+      "source_url": "https://mosaic-comments.invalid/page",
+      "title": "MosaicDesk collaboration",
+      "source_type": "official_doc",
+      "access_status": "accessed",
+      "timestamp": {
+        "accessed_at": "2026-10-09T09:00:00+08:00",
+        "published_at": null,
+        "effective_from": null,
+        "effective_to": null
+      },
+      "locator": "body",
+      "fixture_path": "tests/fixtures/case-04/mosaic-comments.html",
+      "content_sha256": "cc031bedc2ed8dbc4b3dc9177c5f13054381374177a8e5c4ac66ba9f059d21f8"
+    }
+  ]
+}

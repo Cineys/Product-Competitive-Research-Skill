@@ -1,0 +1,26 @@
+# 条件式澄清
+
+## 判断标准
+
+先提取当前请求及已有上下文。仅当缺失信息会实质改变研究对象、比较口径或可交付结论，且无法合理默认时追问：
+
+- ambiguous_objective：例如“帮我分析协作工具”，尚不清楚类别及分析用途。
+- ambiguous_product_identity：同名产品对应多个实体，不能确认目标。
+- missing_comparison_boundary：关键边界无法确定且不同解释会导致不同结论。
+
+缺少自家产品、商业目标、报告格式、预算或目标用户，不自动构成阻断。请求已经指定产品和维度，例如“对比 Figma 和 Sketch 的最新付费档位与协作人数上限”，直接研究；查阅文档后区分并发编辑者、购买席位和访客。公开资料能解决的术语问题不转交用户。
+
+## 问题收敛
+
+优先一个问题，必要时合并两个关键缺口。每个问题映射到 clarification.questions[].resolves，例如 scope.objective。不要机械要求填满 scope。用户已经回答的内容不得重复询问。
+
+对非阻断性缺口记录可见假设，origin=agent、state=unconfirmed、blocking=false，然后执行。未确认假设不是事实，也不是用户授权。若阻断性问题没有回复，保持 clarification_required，不能把等待时间当成回答。
+
+澄清时 required=true，reason_codes 非空，questions 非空；claims、comparisons、findings、recommendations 为空。可保留用户已明确的产品信息。进入执行前 required=false、questions=[]；阻断性假设必须 confirmed，objective 必须非空。
+
+## 验收行为
+
+- “帮我分析协作工具”：先询问类别和用途，不搜索、不任意生成竞品集合。
+- 明确产品、维度和时间请求：不追问研究目的或自家信息，直接执行。
+- “研究 A、B 的新手引导”：专题比较本身是有效目标。
+- 若仅缺自家背景：比较正常执行，涉及自家的建议采用条件式表达。

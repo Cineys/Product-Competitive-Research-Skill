@@ -1,0 +1,469 @@
+{
+  "schema_version": "1.0.0",
+  "research_id": "example-case-03",
+  "phase": "completed_with_gaps",
+  "metadata": {
+    "created_at": "2026-10-09T09:00:00+08:00",
+    "as_of": "2026-10-09T09:00:00+08:00",
+    "language": "zh-CN",
+    "source_mode": "fixture"
+  },
+  "scope": {
+    "user_request": "对比 AtlasBoard 和 MosaicDesk 的 Team 套餐价格，以及离线编辑支持情况",
+    "objective": "比较 Team 价格及离线编辑支持",
+    "decision_context": null,
+    "target_users": null,
+    "own_product_id": null,
+    "product_ids": [
+      "atlas",
+      "mosaic"
+    ],
+    "dimension_ids": [
+      "price",
+      "offline"
+    ],
+    "inclusions": [
+      "Team 公开套餐"
+    ],
+    "exclusions": [
+      "定制合同"
+    ],
+    "assumptions": [],
+    "budget": {
+      "max_source_reads": 20
+    }
+  },
+  "clarification": {
+    "required": false,
+    "reason_codes": [],
+    "questions": []
+  },
+  "products": [
+    {
+      "product_id": "atlas",
+      "name": "AtlasBoard",
+      "official_url": null,
+      "role": "competitor",
+      "context_origin": "fixture"
+    },
+    {
+      "product_id": "mosaic",
+      "name": "MosaicDesk",
+      "official_url": null,
+      "role": "competitor",
+      "context_origin": "fixture"
+    }
+  ],
+  "dimensions": [
+    {
+      "dimension_id": "price",
+      "name": "Team 价格",
+      "kind": "price",
+      "definition": "按月承诺的每席位月费",
+      "comparison_basis": "USD，Team，同一公开地区",
+      "unit": "USD/seat/month"
+    },
+    {
+      "dimension_id": "offline",
+      "name": "离线编辑",
+      "kind": "capability",
+      "definition": "断网时编辑文档",
+      "comparison_basis": "Team",
+      "unit": null
+    }
+  ],
+  "sources": [
+    {
+      "source_id": "atlas-old",
+      "source_url": "https://atlas-old.invalid/page",
+      "title": "AtlasBoard old Team price",
+      "source_type": "pricing_page",
+      "access_status": "accessed",
+      "timestamp": {
+        "accessed_at": "2026-10-09T09:00:00+08:00",
+        "published_at": "2026-01-01T00:00:00+08:00",
+        "effective_from": "2026-01-01T00:00:00+08:00",
+        "effective_to": null
+      },
+      "locator": "body",
+      "fixture_path": "tests/fixtures/case-03/atlas-old.html",
+      "content_sha256": "63a9196bfbecbbb2b5b69d7c3933a5e9e3cc653bb3254b8b5dfd258f9684bd41"
+    },
+    {
+      "source_id": "atlas-new",
+      "source_url": "https://atlas-new.invalid/page",
+      "title": "AtlasBoard new Team price",
+      "source_type": "pricing_page",
+      "access_status": "accessed",
+      "timestamp": {
+        "accessed_at": "2026-10-09T09:00:00+08:00",
+        "published_at": "2026-09-20T00:00:00+08:00",
+        "effective_from": "2026-10-01T00:00:00+08:00",
+        "effective_to": null
+      },
+      "locator": "body",
+      "fixture_path": "tests/fixtures/case-03/atlas-new.html",
+      "content_sha256": "c9e9afaa55e6c640c0ce1804a3bf03f31cb9d030dfa7682f6a1d40caa5c0ba83"
+    },
+    {
+      "source_id": "atlas-announcement",
+      "source_url": "https://atlas-announcement.invalid/page",
+      "title": "AtlasBoard price announcement",
+      "source_type": "changelog",
+      "access_status": "accessed",
+      "timestamp": {
+        "accessed_at": "2026-10-09T09:00:00+08:00",
+        "published_at": "2026-09-20T00:00:00+08:00",
+        "effective_from": "2026-10-01T00:00:00+08:00",
+        "effective_to": null
+      },
+      "locator": "body",
+      "fixture_path": "tests/fixtures/case-03/atlas-announcement.html",
+      "content_sha256": "905f5606e17d63f1b65dedc9d75de1bb31a71142f5005b6f96e07ca2df509f3f"
+    },
+    {
+      "source_id": "atlas-features",
+      "source_url": "https://atlas-features.invalid/page",
+      "title": "AtlasBoard features",
+      "source_type": "official_doc",
+      "access_status": "accessed",
+      "timestamp": {
+        "accessed_at": "2026-10-09T09:00:00+08:00",
+        "published_at": null,
+        "effective_from": null,
+        "effective_to": null
+      },
+      "locator": "body",
+      "fixture_path": "tests/fixtures/case-03/atlas-features.html",
+      "content_sha256": "773c7980febf6af9b241fc4f686addf63fb9b38015b702d2763514fe5d4f0fb3"
+    },
+    {
+      "source_id": "mosaic-price",
+      "source_url": "https://mosaic-price.invalid/page",
+      "title": "MosaicDesk Team price",
+      "source_type": "pricing_page",
+      "access_status": "accessed",
+      "timestamp": {
+        "accessed_at": "2026-10-09T09:00:00+08:00",
+        "published_at": null,
+        "effective_from": null,
+        "effective_to": null
+      },
+      "locator": "body",
+      "fixture_path": "tests/fixtures/case-03/mosaic-price.html",
+      "content_sha256": "211eaba47853c5a0b8e33e9b4642bd5f4139198a41dbe403a6e29ba199a10062"
+    },
+    {
+      "source_id": "mosaic-offline",
+      "source_url": "https://mosaic-offline.invalid/page",
+      "title": "MosaicDesk offline help",
+      "source_type": "official_doc",
+      "access_status": "accessed",
+      "timestamp": {
+        "accessed_at": "2026-10-09T09:00:00+08:00",
+        "published_at": null,
+        "effective_from": null,
+        "effective_to": null
+      },
+      "locator": "body",
+      "fixture_path": "tests/fixtures/case-03/mosaic-offline.html",
+      "content_sha256": "6a217ecff66e65772ba44f9e4120353323a26100a4e132ed405d3ae2a44b96c2"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "c-old",
+      "product": "atlas",
+      "dimension": "price",
+      "claim": "旧 Team 价格为 USD 8",
+      "source_id": "atlas-old",
+      "source_url": "https://atlas-old.invalid/page",
+      "source_type": "pricing_page",
+      "quote": "Team costs USD 8 per seat per month with monthly commitment.",
+      "timestamp": {
+        "accessed_at": "2026-10-09T09:00:00+08:00",
+        "published_at": "2026-01-01T00:00:00+08:00",
+        "effective_from": "2026-01-01T00:00:00+08:00",
+        "effective_to": null
+      },
+      "status": "verified",
+      "feature_status": null,
+      "value": {
+        "type": "money",
+        "amount": "8",
+        "currency": "USD",
+        "per": "seat",
+        "billing_period": "month",
+        "commitment": "monthly"
+      },
+      "applicability": {
+        "plan": "Team",
+        "region": null,
+        "version": null,
+        "billing_period": "month",
+        "conditions": []
+      },
+      "conflict_flag": true
+    },
+    {
+      "claim_id": "c-new",
+      "product": "atlas",
+      "dimension": "price",
+      "claim": "新 Team 价格为 USD 12",
+      "source_id": "atlas-new",
+      "source_url": "https://atlas-new.invalid/page",
+      "source_type": "pricing_page",
+      "quote": "Team costs USD 12 per seat per month with monthly commitment. Effective October 1, 2026, replacing the USD 8 price.",
+      "timestamp": {
+        "accessed_at": "2026-10-09T09:00:00+08:00",
+        "published_at": "2026-09-20T00:00:00+08:00",
+        "effective_from": "2026-10-01T00:00:00+08:00",
+        "effective_to": null
+      },
+      "status": "verified",
+      "feature_status": null,
+      "value": {
+        "type": "money",
+        "amount": "12",
+        "currency": "USD",
+        "per": "seat",
+        "billing_period": "month",
+        "commitment": "monthly"
+      },
+      "applicability": {
+        "plan": "Team",
+        "region": null,
+        "version": null,
+        "billing_period": "month",
+        "conditions": []
+      },
+      "conflict_flag": true
+    },
+    {
+      "claim_id": "c-mosaic-price",
+      "product": "mosaic",
+      "dimension": "price",
+      "claim": "Team 价格为 USD 10",
+      "source_id": "mosaic-price",
+      "source_url": "https://mosaic-price.invalid/page",
+      "source_type": "pricing_page",
+      "quote": "Team costs USD 10 per seat per month with monthly commitment.",
+      "timestamp": {
+        "accessed_at": "2026-10-09T09:00:00+08:00",
+        "published_at": null,
+        "effective_from": null,
+        "effective_to": null
+      },
+      "status": "verified",
+      "feature_status": null,
+      "value": {
+        "type": "money",
+        "amount": "10",
+        "currency": "USD",
+        "per": "seat",
+        "billing_period": "month",
+        "commitment": "monthly"
+      },
+      "applicability": {
+        "plan": "Team",
+        "region": null,
+        "version": null,
+        "billing_period": "month",
+        "conditions": []
+      },
+      "conflict_flag": false
+    },
+    {
+      "claim_id": "c-unknown",
+      "product": "atlas",
+      "dimension": "offline",
+      "claim": "资料不足以判断离线编辑",
+      "source_id": "atlas-features",
+      "source_url": "https://atlas-features.invalid/page",
+      "source_type": "official_doc",
+      "quote": "Team includes online editing, comments and sharing.",
+      "timestamp": {
+        "accessed_at": "2026-10-09T09:00:00+08:00",
+        "published_at": null,
+        "effective_from": null,
+        "effective_to": null
+      },
+      "status": "insufficient_evidence",
+      "feature_status": "unknown",
+      "value": null,
+      "applicability": {
+        "plan": "Team",
+        "region": null,
+        "version": null,
+        "billing_period": "month",
+        "conditions": []
+      },
+      "conflict_flag": false
+    },
+    {
+      "claim_id": "c-negative",
+      "product": "mosaic",
+      "dimension": "offline",
+      "claim": "Team 不支持离线编辑",
+      "source_id": "mosaic-offline",
+      "source_url": "https://mosaic-offline.invalid/page",
+      "source_type": "official_doc",
+      "quote": "Offline editing is not supported on Team. An internet connection is required.",
+      "timestamp": {
+        "accessed_at": "2026-10-09T09:00:00+08:00",
+        "published_at": null,
+        "effective_from": null,
+        "effective_to": null
+      },
+      "status": "verified",
+      "feature_status": "unsupported",
+      "value": null,
+      "applicability": {
+        "plan": "Team",
+        "region": null,
+        "version": null,
+        "billing_period": "month",
+        "conditions": []
+      },
+      "conflict_flag": false
+    }
+  ],
+  "conflicts": [
+    {
+      "conflict_id": "cf-price",
+      "claim_ids": [
+        "c-old",
+        "c-new"
+      ],
+      "reason": "同套餐新旧价格不同",
+      "resolution": "resolved_by_effective_date",
+      "selected_claim_ids": [
+        "c-new"
+      ],
+      "rationale": "新价格页和公告明确 2026-10-01 生效并替代旧价格"
+    }
+  ],
+  "comparisons": [
+    {
+      "comparison_id": "cmp-atlas-price",
+      "product": "atlas",
+      "dimension": "price",
+      "feature_status": null,
+      "value": {
+        "type": "money",
+        "amount": "12",
+        "currency": "USD",
+        "per": "seat",
+        "billing_period": "month",
+        "commitment": "monthly"
+      },
+      "assessment_status": "established",
+      "evidence_claim_ids": [
+        "c-old",
+        "c-new"
+      ],
+      "conflict_ids": [
+        "cf-price"
+      ],
+      "rationale": "依据所列来源和适用时间；未知不代表不支持。"
+    },
+    {
+      "comparison_id": "cmp-mosaic-price",
+      "product": "mosaic",
+      "dimension": "price",
+      "feature_status": null,
+      "value": {
+        "type": "money",
+        "amount": "10",
+        "currency": "USD",
+        "per": "seat",
+        "billing_period": "month",
+        "commitment": "monthly"
+      },
+      "assessment_status": "established",
+      "evidence_claim_ids": [
+        "c-mosaic-price"
+      ],
+      "conflict_ids": [],
+      "rationale": "依据所列来源和适用时间；未知不代表不支持。"
+    },
+    {
+      "comparison_id": "cmp-atlas-offline",
+      "product": "atlas",
+      "dimension": "offline",
+      "feature_status": "unknown",
+      "value": null,
+      "assessment_status": "unknown",
+      "evidence_claim_ids": [
+        "c-unknown"
+      ],
+      "conflict_ids": [],
+      "rationale": "依据所列来源和适用时间；未知不代表不支持。"
+    },
+    {
+      "comparison_id": "cmp-mosaic-offline",
+      "product": "mosaic",
+      "dimension": "offline",
+      "feature_status": "unsupported",
+      "value": null,
+      "assessment_status": "established",
+      "evidence_claim_ids": [
+        "c-negative"
+      ],
+      "conflict_ids": [],
+      "rationale": "依据所列来源和适用时间；未知不代表不支持。"
+    }
+  ],
+  "findings": [
+    {
+      "finding_id": "f-offline",
+      "statement": "MosaicDesk Team 文档明确不支持离线编辑，不能推断 AtlasBoard 是否支持",
+      "evidence_claim_ids": [
+        "c-negative",
+        "c-unknown"
+      ],
+      "comparison_ids": [
+        "cmp-mosaic-offline",
+        "cmp-atlas-offline"
+      ],
+      "certainty": "qualified"
+    }
+  ],
+  "recommendations": [
+    {
+      "recommendation_id": "r-offline",
+      "evidence_mapping": [
+        {
+          "finding_id": "f-offline",
+          "claim_ids": [
+            "c-negative"
+          ],
+          "supports": "证明竞品能力限制，不证明目标用户需要离线功能"
+        }
+      ],
+      "user_impact": {
+        "statement": "网络不稳定可能影响协作任务",
+        "basis": "hypothesis",
+        "claim_ids": []
+      },
+      "action": "若目标用户需要断网工作，先观察任务受阻频率再决定是否开发",
+      "preconditions": [
+        {
+          "statement": "自家产品面向有断网编辑需求的团队",
+          "state": "unconfirmed",
+          "assumption_id": null
+        }
+      ],
+      "conditional": true,
+      "validation": {
+        "method": "访谈与任务观察",
+        "metric": "断网导致的任务中断比例",
+        "success_criterion": "研究前确定阈值",
+        "criterion_status": "to_be_defined"
+      }
+    }
+  ],
+  "limitations": [
+    "AtlasBoard 离线编辑状态未知；合成离线资料不代表真实市场事实。"
+  ]
+}

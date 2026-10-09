@@ -1,0 +1,14 @@
+{
+  "case_id": "case-02",
+  "as_of": "2026-10-09T09:00:00+08:00",
+  "user_request": "对比 Figma 和 Sketch 的最新付费档位与协作人数上限",
+  "conversation_context": [],
+  "own_product": null,
+  "available_tools": [
+    "fixture_search",
+    "fixture_read"
+  ],
+  "fixture_manifest": "tests/fixtures/case-02/manifest.json",
+  "network_allowed": false,
+  "max_source_reads": 20
+}

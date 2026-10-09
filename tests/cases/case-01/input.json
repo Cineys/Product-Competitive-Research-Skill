@@ -1,0 +1,14 @@
+{
+  "case_id": "case-01",
+  "as_of": "2026-10-09T09:00:00+08:00",
+  "user_request": "帮我分析协作工具",
+  "conversation_context": [],
+  "own_product": null,
+  "available_tools": [
+    "fixture_search",
+    "fixture_read"
+  ],
+  "fixture_manifest": "tests/fixtures/case-01/manifest.json",
+  "network_allowed": false,
+  "max_source_reads": 20
+}

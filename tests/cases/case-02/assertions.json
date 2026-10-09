@@ -1,0 +1,69 @@
+{
+  "case_id": "case-02",
+  "assertion_version": "1.0.0",
+  "evaluation": "contract checks + tool trace + semantic review",
+  "contract_checks": [
+    {
+      "path": "phase",
+      "equals": "completed"
+    },
+    {
+      "path": "clarification.required",
+      "equals": false
+    },
+    {
+      "path": "metadata.source_mode",
+      "equals": "fixture"
+    },
+    {
+      "path": "scope.own_product_id",
+      "equals": null
+    }
+  ],
+  "empty_collections": [
+    "clarification.questions"
+  ],
+  "expected_plan_values": [
+    {
+      "product": "Figma",
+      "plan": "Fixture Pro",
+      "USD_per_editor_month": 12,
+      "commitment": "annual",
+      "simultaneous_editors_per_document": 10
+    },
+    {
+      "product": "Figma",
+      "plan": "Fixture Business",
+      "USD_per_editor_month": 24,
+      "commitment": "annual",
+      "simultaneous_editors_per_document": 50
+    },
+    {
+      "product": "Sketch",
+      "plan": "Fixture Standard",
+      "USD_per_editor_month": 10,
+      "commitment": "annual",
+      "simultaneous_editors_per_document": 5
+    },
+    {
+      "product": "Sketch",
+      "plan": "Fixture Team",
+      "USD_per_editor_month": 20,
+      "commitment": "annual",
+      "simultaneous_editors_per_document": 25
+    }
+  ],
+  "tool_checks": {
+    "allowed": [
+      "fixture_search",
+      "fixture_read"
+    ],
+    "network_calls": 0
+  },
+  "semantic_checks": [
+    "不重复追问目标或自家背景",
+    "区分访客、购买席位与同时编辑人数",
+    "只声称合成资料时间范围内的最新信息，不用记忆覆盖测试数据",
+    "每个确定比较有准确证据"
+  ]
+}

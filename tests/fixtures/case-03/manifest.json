@@ -1,0 +1,104 @@
+{
+  "fixture_version": "1.0.0",
+  "synthetic": true,
+  "as_of": "2026-10-09T09:00:00+08:00",
+  "network_allowed": false,
+  "sources": [
+    {
+      "source_id": "atlas-old",
+      "source_url": "https://atlas-old.invalid/page",
+      "title": "AtlasBoard old Team price",
+      "source_type": "pricing_page",
+      "access_status": "accessed",
+      "timestamp": {
+        "accessed_at": "2026-10-09T09:00:00+08:00",
+        "published_at": "2026-01-01T00:00:00+08:00",
+        "effective_from": "2026-01-01T00:00:00+08:00",
+        "effective_to": null
+      },
+      "locator": "body",
+      "fixture_path": "tests/fixtures/case-03/atlas-old.html",
+      "content_sha256": "63a9196bfbecbbb2b5b69d7c3933a5e9e3cc653bb3254b8b5dfd258f9684bd41"
+    },
+    {
+      "source_id": "atlas-new",
+      "source_url": "https://atlas-new.invalid/page",
+      "title": "AtlasBoard new Team price",
+      "source_type": "pricing_page",
+      "access_status": "accessed",
+      "timestamp": {
+        "accessed_at": "2026-10-09T09:00:00+08:00",
+        "published_at": "2026-09-20T00:00:00+08:00",
+        "effective_from": "2026-10-01T00:00:00+08:00",
+        "effective_to": null
+      },
+      "locator": "body",
+      "fixture_path": "tests/fixtures/case-03/atlas-new.html",
+      "content_sha256": "c9e9afaa55e6c640c0ce1804a3bf03f31cb9d030dfa7682f6a1d40caa5c0ba83"
+    },
+    {
+      "source_id": "atlas-announcement",
+      "source_url": "https://atlas-announcement.invalid/page",
+      "title": "AtlasBoard price announcement",
+      "source_type": "changelog",
+      "access_status": "accessed",
+      "timestamp": {
+        "accessed_at": "2026-10-09T09:00:00+08:00",
+        "published_at": "2026-09-20T00:00:00+08:00",
+        "effective_from": "2026-10-01T00:00:00+08:00",
+        "effective_to": null
+      },
+      "locator": "body",
+      "fixture_path": "tests/fixtures/case-03/atlas-announcement.html",
+      "content_sha256": "905f5606e17d63f1b65dedc9d75de1bb31a71142f5005b6f96e07ca2df509f3f"
+    },
+    {
+      "source_id": "atlas-features",
+      "source_url": "https://atlas-features.invalid/page",
+      "title": "AtlasBoard features",
+      "source_type": "official_doc",
+      "access_status": "accessed",
+      "timestamp": {
+        "accessed_at": "2026-10-09T09:00:00+08:00",
+        "published_at": null,
+        "effective_from": null,
+        "effective_to": null
+      },
+      "locator": "body",
+      "fixture_path": "tests/fixtures/case-03/atlas-features.html",
+      "content_sha256": "773c7980febf6af9b241fc4f686addf63fb9b38015b702d2763514fe5d4f0fb3"
+    },
+    {
+      "source_id": "mosaic-price",
+      "source_url": "https://mosaic-price.invalid/page",
+      "title": "MosaicDesk Team price",
+      "source_type": "pricing_page",
+      "access_status": "accessed",
+      "timestamp": {
+        "accessed_at": "2026-10-09T09:00:00+08:00",
+        "published_at": null,
+        "effective_from": null,
+        "effective_to": null
+      },
+      "locator": "body",
+      "fixture_path": "tests/fixtures/case-03/mosaic-price.html",
+      "content_sha256": "211eaba47853c5a0b8e33e9b4642bd5f4139198a41dbe403a6e29ba199a10062"
+    },
+    {
+      "source_id": "mosaic-offline",
+      "source_url": "https://mosaic-offline.invalid/page",
+      "title": "MosaicDesk offline help",
+      "source_type": "official_doc",
+      "access_status": "accessed",
+      "timestamp": {
+        "accessed_at": "2026-10-09T09:00:00+08:00",
+        "published_at": null,
+        "effective_from": null,
+        "effective_to": null
+      },
+      "locator": "body",
+      "fixture_path": "tests/fixtures/case-03/mosaic-offline.html",
+      "content_sha256": "6a217ecff66e65772ba44f9e4120353323a26100a4e132ed405d3ae2a44b96c2"
+    }
+  ]
+}

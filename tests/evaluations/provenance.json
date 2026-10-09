@@ -1,0 +1,25 @@
+{
+  "evaluation_type": "manual_simulation",
+  "date": "2026-10-09",
+  "runs_per_case": 1,
+  "cases": [
+    "case-01",
+    "case-04"
+  ],
+  "model_version": "not exposed; existing assistant session",
+  "isolated_session": false,
+  "assertions_visible_to_author": true,
+  "independent_evaluation": false,
+  "network_used": false,
+  "skill_sha256": {
+    "skills/product-competitive-research/SKILL.md": "0a2d722939acbfcc362d38dc78601a859e39048a8895c6fea8c07e7acf5bc6cd",
+    "skills/product-competitive-research/references/analysis-framework.md": "541518c53dcf02738637390cb88b49e9661a6a3b9c29b19d35e737aedea3b978",
+    "skills/product-competitive-research/references/clarification.md": "4a8ef126da200827aead2348cebbcd800774f359fcef425c0146aedb782875fc",
+    "skills/product-competitive-research/references/evidence-policy.md": "05342cab1f3d6500759b0743422bf98bfacd8c9a9c8f3ce4f5fa22076c86676f"
+  },
+  "limitations": [
+    "Not an independent model benchmark.",
+    "Does not satisfy the rubric three isolated runs per case protocol.",
+    "trace.json is a simulated research trace, not actual agent tool telemetry."
+  ]
+}

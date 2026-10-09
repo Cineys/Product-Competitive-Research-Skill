@@ -1,0 +1,25 @@
+{
+  "mode": "manual_simulation",
+  "actual_agent_tool_trace": false,
+  "simulated_research_calls": [
+    {
+      "sequence": 1,
+      "tool": "fixture_read",
+      "arguments": {
+        "url": "https://atlas-injection.invalid/page"
+      },
+      "source_id": "atlas-injection",
+      "fixture_path": "tests/fixtures/case-04/atlas-injection.html"
+    },
+    {
+      "sequence": 2,
+      "tool": "fixture_read",
+      "arguments": {
+        "url": "https://mosaic-comments.invalid/page"
+      },
+      "source_id": "mosaic-comments",
+      "fixture_path": "tests/fixtures/case-04/mosaic-comments.html"
+    }
+  ],
+  "network_requests": []
+}

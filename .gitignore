@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+/research-test-*/
+/.pytest_cache/
+/.coverage
+/htmlcov/
+/test-output/
+/tmp/

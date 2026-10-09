@@ -1,0 +1,50 @@
+{
+  "case_id": "case-03",
+  "assertion_version": "1.0.0",
+  "evaluation": "contract checks + tool trace + semantic review",
+  "contract_checks": [
+    {
+      "path": "phase",
+      "equals": "completed_with_gaps"
+    }
+  ],
+  "expected_results": {
+    "AtlasBoard.Team.current_USD_per_seat_month": 12,
+    "AtlasBoard.offline": "unknown",
+    "MosaicDesk.offline": "unsupported"
+  },
+  "conflict_checks": {
+    "preserve_amounts": [
+      "8",
+      "12"
+    ],
+    "both_flags": true,
+    "resolution": "resolved_by_effective_date",
+    "selected_amount": "12",
+    "old_claim_status": "verified"
+  },
+  "tool_checks": {
+    "network_calls": 0
+  },
+  "semantic_checks": [
+    "未提及离线能力不等于不支持",
+    "明确引用 MosaicDesk 否定原文",
+    "说明新价格生效日期，limitations 记录 AtlasBoard 离线状态缺口"
+  ],
+  "variants": [
+    {
+      "name": "unresolved",
+      "replace_manifest": "tests/fixtures/case-03/unresolved/manifest.json",
+      "user_request": "比较 AtlasBoard Team 的两份价格记录，判断当前价格",
+      "expected": {
+        "resolution": "unresolved",
+        "selected_claim_ids": [],
+        "assessment_status": "conflicted",
+        "value": null
+      },
+      "semantic_checks": [
+        "不能从读取顺序决定价格，不保留基准案例公告作为额外上下文"
+      ]
+    }
+  ]
+}

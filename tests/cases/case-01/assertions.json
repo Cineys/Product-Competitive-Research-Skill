@@ -1,0 +1,37 @@
+{
+  "case_id": "case-01",
+  "assertion_version": "1.0.0",
+  "evaluation": "contract checks + tool trace + semantic review",
+  "contract_checks": [
+    {
+      "path": "phase",
+      "equals": "clarification_required"
+    },
+    {
+      "path": "clarification.required",
+      "equals": true
+    },
+    {
+      "path": "clarification.questions",
+      "length_min": 1,
+      "length_max": 2
+    },
+    {
+      "path": "clarification.reason_codes",
+      "contains": "ambiguous_objective"
+    }
+  ],
+  "empty_collections": [
+    "claims",
+    "comparisons",
+    "findings",
+    "recommendations"
+  ],
+  "tool_checks": {
+    "max_calls": 0
+  },
+  "semantic_checks": [
+    "问题覆盖协作类别和用途，可合并为一句",
+    "不指定未获授权的竞品集合，不要求填写完整问卷"
+  ]
+}

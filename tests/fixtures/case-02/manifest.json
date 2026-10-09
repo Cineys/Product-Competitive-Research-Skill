@@ -1,0 +1,72 @@
+{
+  "fixture_version": "1.0.0",
+  "synthetic": true,
+  "as_of": "2026-10-09T09:00:00+08:00",
+  "network_allowed": false,
+  "sources": [
+    {
+      "source_id": "figma-price",
+      "source_url": "https://figma-price.invalid/page",
+      "title": "Figma synthetic pricing",
+      "source_type": "pricing_page",
+      "access_status": "accessed",
+      "timestamp": {
+        "accessed_at": "2026-10-09T09:00:00+08:00",
+        "published_at": null,
+        "effective_from": "2026-10-01T00:00:00+08:00",
+        "effective_to": null
+      },
+      "locator": "body",
+      "fixture_path": "tests/fixtures/case-02/figma-price.html",
+      "content_sha256": "80f622276321f567fb7bf365a925671969defe8b2592902aaabf108e944eee24"
+    },
+    {
+      "source_id": "figma-collaboration",
+      "source_url": "https://figma-collaboration.invalid/page",
+      "title": "Figma synthetic collaboration",
+      "source_type": "official_doc",
+      "access_status": "accessed",
+      "timestamp": {
+        "accessed_at": "2026-10-09T09:00:00+08:00",
+        "published_at": null,
+        "effective_from": null,
+        "effective_to": null
+      },
+      "locator": "body",
+      "fixture_path": "tests/fixtures/case-02/figma-collaboration.html",
+      "content_sha256": "31469fbe314d0ec11c7bd77a6ad163f4d76b5d8503bd702f1d3cc08d10318378"
+    },
+    {
+      "source_id": "sketch-price",
+      "source_url": "https://sketch-price.invalid/page",
+      "title": "Sketch synthetic pricing",
+      "source_type": "pricing_page",
+      "access_status": "accessed",
+      "timestamp": {
+        "accessed_at": "2026-10-09T09:00:00+08:00",
+        "published_at": null,
+        "effective_from": "2026-10-01T00:00:00+08:00",
+        "effective_to": null
+      },
+      "locator": "body",
+      "fixture_path": "tests/fixtures/case-02/sketch-price.html",
+      "content_sha256": "a618d6b3b856a1402fab555e205f222043281dabf80b540b2ec4ec77e2b410d3"
+    },
+    {
+      "source_id": "sketch-collaboration",
+      "source_url": "https://sketch-collaboration.invalid/page",
+      "title": "Sketch synthetic collaboration",
+      "source_type": "official_doc",
+      "access_status": "accessed",
+      "timestamp": {
+        "accessed_at": "2026-10-09T09:00:00+08:00",
+        "published_at": null,
+        "effective_from": null,
+        "effective_to": null
+      },
+      "locator": "body",
+      "fixture_path": "tests/fixtures/case-02/sketch-collaboration.html",
+      "content_sha256": "7ef321d324141e54724fad6423b6eca21c6829e13557665677ab91b0f9d99872"
+    }
+  ]
+}
