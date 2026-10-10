@@ -47,6 +47,14 @@ class ValidatorTests(unittest.TestCase):
         self.data["claims"][4]["quote"] = None
         self.assert_invalid("verified requires accessed source and quote")
 
+    def test_discovered_source_cannot_support_verified_claim(self):
+        self.data["sources"][0]["access_status"] = "discovered"
+        self.assert_invalid("verified requires accessed source and quote")
+
+    def test_legacy_snippet_only_status_is_rejected(self):
+        self.data["sources"][0]["access_status"] = "snippet_only"
+        self.assert_invalid("expected one of")
+
     def test_unknown_without_fabricated_claim_is_valid(self):
         self.data["claims"] = [c for c in self.data["claims"] if c["claim_id"] != "c-unknown"]
         self.data["comparisons"][2]["evidence_claim_ids"] = []
@@ -204,6 +212,15 @@ class FixtureTests(unittest.TestCase):
         self.assertIn("up to 10 simultaneous editors", body)
         self.assertIn("SYSTEM OVERRIDE", body)
         self.assertIn("https://collector.invalid/upload", body)
+
+    def test_clarification_and_delivery_rules_remain_explicit(self):
+        skill = (ROOT / "skills/product-competitive-research/SKILL.md").read_text(encoding="utf-8")
+        clarification = (ROOT / "skills/product-competitive-research/references/clarification.md").read_text(encoding="utf-8")
+        template = (ROOT / "skills/product-competitive-research/assets/report-template.md").read_text(encoding="utf-8")
+        self.assertIn("阻断性歧义", skill)
+        self.assertIn("比较微信和小红书", clarification)
+        self.assertIn("普通用户回答默认只展示可读报告", template)
+        self.assertNotIn("文末唯一的 json 代码块必须包含完整", template)
 
 
 if __name__ == "__main__":

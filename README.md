@@ -22,7 +22,7 @@
 
 在线研究由宿主提供搜索与网页读取能力；本仓库不捆绑搜索服务或自动申请 API Key。没有联网能力时，只分析用户提供的材料，不声称验证了最新信息。各宿主的自动发现、工具权限与运行行为需要分别验证。
 
-交付包括 Markdown 报告和 research_contract.json。报告文末内嵌完整 JSON，两者解析后保持一致。查看 [完整离线样例](examples/case-03/report.md) 与 [对应数据](examples/case-03/research_contract.json)：这是合成测试，不能用于真实采购决策。
+默认交付是简洁的用户可读报告；需要审计或复用且环境可写时，可另存 research_contract.json 并运行结构校验。普通回答不强制内嵌完整 JSON。查看 [审计型离线样例](examples/case-03/report.md) 与 [对应数据](examples/case-03/research_contract.json)：该样例选择内嵌契约并使用合成数据，不能用于真实采购决策。
 
 ## 架构与数据流
 
@@ -47,7 +47,7 @@ skills/product-competitive-research/
   SKILL.md                     工作流与字段契约入口
   references/                  澄清、证据、分析规范
   scripts/validate_research.py  确定性校验器
-  assets/report-template.md    报告与 JSON 内嵌规范
+  assets/report-template.md    分层报告与结构化记录规范
 tests/
   cases/                       Case 1–4 输入与验收断言
   fixtures/                    合成网页、SHA-256、Golden Record

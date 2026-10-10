@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate contract 1.0.0 with Python 3.10+ standard library only.
+"""Validate contract 1.1.0 with Python 3.10+ standard library only.
 
 No network or writes. Exit 0: structural checks pass (semantic review remains);
 1: invalid contract; 2: input/CLI error. Import validate(data) for diagnostics.
@@ -36,7 +36,7 @@ TIME = {"accessed_at": "time", "published_at": nullable("time"),
         "effective_from": nullable("time"), "effective_to": nullable("time")}
 VALUE = ("value", None)
 SCHEMA = {
-    "schema_version": enum("1.0.0"), "research_id": TEXT,
+    "schema_version": enum("1.1.0"), "research_id": TEXT,
     "phase": enum("clarification_required ready researching completed completed_with_gaps"),
     "metadata": {"created_at": "time", "as_of": "time", "language": TEXT,
                  "source_mode": enum("live provided fixture mixed")},
@@ -57,7 +57,7 @@ SCHEMA = {
                          "kind": enum("capability price limit positioning"),
                          "definition": TEXT, "comparison_basis": TEXT, "unit": nullable(TEXT)}),
     "sources": array({"source_id": TEXT, "source_url": "url", "title": TEXT,
-                      "source_type": SOURCE_TYPE, "access_status": enum("accessed snippet_only inaccessible"),
+                      "source_type": SOURCE_TYPE, "access_status": enum("discovered accessed inaccessible"),
                       "timestamp": TIME, "locator": nullable(TEXT),
                       "fixture_path": nullable(TEXT), "content_sha256": nullable("sha256")}),
     "claims": array({"claim_id": TEXT, "product": TEXT, "dimension": TEXT, "claim": TEXT,

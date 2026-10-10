@@ -67,7 +67,7 @@ AtlasBoard 离线状态未知。没有真实产品实测、用户研究或自家
 
 ```json
 {
-  "schema_version": "1.0.0",
+  "schema_version": "1.1.0",
   "research_id": "example-case-03",
   "phase": "completed_with_gaps",
   "metadata": {

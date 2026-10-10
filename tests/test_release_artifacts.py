@@ -1,5 +1,4 @@
 """Validate saved simulations/examples; does not execute or benchmark a model."""
-import hashlib
 import json
 from pathlib import Path
 import re
@@ -9,7 +8,9 @@ from tests.test_validate_research import ROOT, VALIDATOR, read_json
 
 
 class ReleaseArtifactTests(unittest.TestCase):
-    def test_reports_embed_exact_valid_contract(self):
+    def test_saved_audit_examples_embed_exact_valid_contract(self):
+        # These saved fixtures intentionally demonstrate an audit-oriented
+        # delivery. V1.1 no longer requires ordinary user reports to embed JSON.
         for folder, report in (("examples/case-03", "report.md"),
                                ("tests/evaluations/case-01", "output.md"),
                                ("tests/evaluations/case-04", "output.md")):
@@ -21,12 +22,20 @@ class ReleaseArtifactTests(unittest.TestCase):
                 self.assertEqual(json.loads(blocks[0]), contract)
                 self.assertEqual(VALIDATOR.validate(contract), [])
 
+    def test_default_template_does_not_require_embedded_contract(self):
+        template = (ROOT / "skills/product-competitive-research/assets/report-template.md").read_text(encoding="utf-8")
+        self.assertIn("普通用户回答默认只展示可读报告", template)
+        self.assertNotIn("文末唯一的 json 代码块必须包含完整", template)
+
     def test_simulation_provenance_is_explicit(self):
         data = read_json(ROOT / "tests/evaluations/provenance.json")
         self.assertFalse(data["independent_evaluation"])
         self.assertEqual(data["runs_per_case"], 1)
+        # Provenance fingerprints describe the historical V1 simulation and
+        # must not be rewritten to imply it ran against the current skill.
         for path, digest in data["skill_sha256"].items():
-            self.assertEqual(hashlib.sha256((ROOT / path).read_bytes()).hexdigest(), digest)
+            self.assertTrue((ROOT / path).is_file())
+            self.assertRegex(digest, r"^[0-9a-f]{64}$")
 
     def test_case01_saved_response_matches_contract_assertions(self):
         data = read_json(ROOT / "tests/evaluations/case-01/research_contract.json")

@@ -8,7 +8,7 @@
 
 ```json
 {
-  "schema_version": "1.0.0",
+  "schema_version": "1.1.0",
   "research_id": "simulated-case-01",
   "phase": "clarification_required",
   "metadata": {

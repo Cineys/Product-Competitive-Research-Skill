@@ -45,7 +45,7 @@ r-validate：若自家产品面向多人同时编辑团队，可先观察实际�
 
 ```json
 {
-  "schema_version": "1.0.0",
+  "schema_version": "1.1.0",
   "research_id": "simulated-case-04",
   "phase": "completed_with_gaps",
   "metadata": {

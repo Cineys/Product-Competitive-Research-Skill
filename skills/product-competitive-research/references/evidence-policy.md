@@ -2,7 +2,13 @@
 
 ## 来源和主张
 
-source 必含 source_id、source_url、title、source_type、access_status、timestamp、locator、fixture_path、content_sha256。后三项可空。source_type 为 official_doc / pricing_page / changelog / marketing_claim / user_review / third_party_report；access_status 为 accessed / snippet_only / inaccessible。
+source 必含 source_id、source_url、title、source_type、access_status、timestamp、locator、fixture_path、content_sha256。后三项可空。source_type 为 official_doc / pricing_page / changelog / marketing_claim / user_review / third_party_report；access_status 为 discovered / accessed / inaccessible。
+
+- discovered：仅通过搜索结果、目录或链接发现候选来源，尚无原始页面正文读取依据。搜索摘要只能用于发现来源，不能证明页面内容。
+- accessed：有工具返回、fixture read 或用户提供全文等依据，证明实际读取了原始页面正文。页面成功访问不代表页面内所有事实均已核验。
+- inaccessible：尝试读取原始页面但没有取得可用于检查的正文。
+
+source 只记录访问阶段，不使用 verified。不要因为回答中出现 URL、搜索结果含 URL、搜索摘要复述事实或工具预加载页面标题，就把 source 标为 accessed。
 
 timestamp 含 accessed_at、published_at、effective_from、effective_to。accessed_at 必须为带时区 RFC 3339；后三者未知时为 null，不得用访问时间替代。effective_to 不包含该时点。fixture 模式的 source 必须有 fixture_path 和 SHA-256，禁止联网请求测试身份 URL。
 
@@ -14,9 +20,11 @@ applicability 含 plan、region、version、billing_period（均可空）以及 
 
 status 为 verified / unverified / insufficient_evidence。
 
-- verified：已读取原文、quote 非空且原文支持适用条件下的主张。仅说明来源支持，不代表实测。
-- unverified：未访问正文、摘要证据或尚未核查。
+- verified：关联 accessed source，quote 非空且来自实际读取的正文，原文直接支持适用条件下的这一条具体主张。仅说明该来源支持，不代表实测、普遍成立或当前仍有效。
+- unverified：只有 discovered 来源、搜索摘要、未访问正文或尚未完成具体事实核查。
 - insufficient_evidence：看过资料但不足以支持目标结论。
+
+核验按“发现来源 → 读取正文 → 核对具体 claim”推进。一个 source 被 accessed 后，其 claim 仍须逐条判断；不得把页面访问状态批量升级成 verified。正文没有直接支持、适用条件不清或只能由多个片段推测时，使用 unverified / insufficient_evidence，并在 comparison 中保留 unknown、conflicted 或限制说明。
 
 功能维度的 feature_status 为 supported / partially_supported / unsupported / unknown / not_applicable，value=null。非功能维度 feature_status=null，使用 value。
 
@@ -25,7 +33,7 @@ status 为 verified / unverified / insufficient_evidence。
 - unknown：资料不能确定支持情况。不能发明“官网说未知”或虚构 quote；可以没有 claim，也可以关联实际检查过但不足以得出结论的记录。
 - not_applicable：必须解释为什么该维度不适用，不能替代缺失资料。
 
-不得仅凭营销资料评价实际易用性、性能或用户收益。主张文字应准确写为“厂商宣称……”。转述评论不能升级成普遍用户结论。搜索摘要仅用于有限线索，不能标 verified。
+不得仅凭营销资料评价实际易用性、性能或用户收益。主张文字应准确写为“厂商宣称……”。转述评论不能升级成普遍用户结论。搜索摘要不能直接作为 quote，也不能支持 verified claim。
 
 value 为 null 或以下严格对象：
 

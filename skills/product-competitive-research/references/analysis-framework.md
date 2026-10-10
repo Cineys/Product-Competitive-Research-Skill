@@ -2,6 +2,13 @@
 
 比较以用户决策为中心。先明确维度的 definition、comparison_basis 和 unit，再填矩阵。不要用功能总数代替适合度，也不要从“竞品有”直接推出“我们应该做”。同样严谨地审视自家产品和竞品。
 
+## 执行模式
+
+- 快速比较：适用于用户已经指定产品及价格、套餐、功能或其他少量明确维度的请求。只核验影响这些维度的关键事实，默认交付核心结论、紧凑比较矩阵、重要不确定性和关键来源；不自动扩展定位、用户体验、策略或建议。可以保持 findings、recommendations 为空。
+- 深度分析：适用于定位、用户需求与场景、业务流程、体验、竞争策略或产品机会研究。按下述证据到行动链选择相关框架，输出有决策价值的发现和必要建议。
+
+两种模式都必须读取关键原始来源并逐条核验 claim。快速模式减少范围和展示复杂度，不降低证据标准，也不把未知补成结论。
+
 ## 发现
 
 finding 必含 finding_id、statement、evidence_claim_ids、comparison_ids、certainty。certainty 为 established / qualified / unresolved。
@@ -29,4 +36,4 @@ recommendation 必含 recommendation_id、evidence_mapping、user_impact、actio
 
 ## 交付复核
 
-核对每条发现和建议能追溯到原文；标记未知、冲突和前提；不要隐藏竞品优势。若达到研究预算仍有决策相关缺口，phase=completed_with_gaps，limitations 写明缺口及可能影响。报告可以简短，但不得省略影响结论的适用条件和时间基准。
+核对每条结论、发现和建议能追溯到原文；标记未知、冲突和前提；不要隐藏竞品优势。若达到研究预算仍有决策相关缺口，phase=completed_with_gaps，limitations 写明缺口及可能影响。报告可以简短，但不得省略影响结论的适用条件和时间基准。
