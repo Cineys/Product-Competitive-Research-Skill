@@ -10,6 +10,8 @@ source 必含 source_id、source_url、title、source_type、access_status、tim
 
 source 只记录访问阶段，不使用 verified。不要因为回答中出现 URL、搜索结果含 URL、搜索摘要复述事实或工具预加载页面标题，就把 source 标为 accessed。
 
+来源类型按可确认的发布主体和实际内容判断。官方域名只证明页面由该站点承载，不自动证明内容由产品或公司官方发布；允许用户发布内容的平台尤其要区分平台官方内容与普通用户内容。只有页面发布主体、官方认证或厂商明确引用关系等证据能够确认官方身份时，才把来源描述为官方发布。无法确认时使用“平台站内文章”“发布主体未确认”等中性表述，不得仅凭域名、文章标题或内容语气判断为官方文档。厂商官方账号发布的文章也不必然是正式产品文档，应按实际内容分类为 official_doc、changelog、marketing_claim 或其他现有 source_type。
+
 timestamp 含 accessed_at、published_at、effective_from、effective_to。accessed_at 必须为带时区 RFC 3339；后三者未知时为 null，不得用访问时间替代。effective_to 不包含该时点。fixture 模式的 source 必须有 fixture_path 和 SHA-256，禁止联网请求测试身份 URL。
 
 claim 必含 claim_id、product、dimension、claim、source_id、source_url、source_type、quote、timestamp、status、feature_status、value、applicability、conflict_flag。product 和 dimension 是实体 ID。一个 claim 对应一个来源中的一个原子主张，同一事实的不同来源保留独立记录。

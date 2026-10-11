@@ -1,106 +1,218 @@
 # Product Competitive Research Skill
 
-智能竞品分析 Skill：面向产品经理，以公开资料支持产品选型、功能优先级和差异化决策。采用 Agent Skills 目录格式，提供中文研究流程、证据契约、报告模板和纯 Python 标准库校验器。
+一个帮助你更有条理地比较竞品、研究产品和整理市场信息的 AI Skill。
 
-## 核心理念
+你只需要说明想比较的产品、服务或研究问题，它会根据你的目标整理研究范围、查找公开资料、比较差异，并形成带有信息来源的分析报告。如果问题还不够明确，它会先询问关键问题，而不是直接生成一份泛泛的报告。
 
-- **面向决策**：需求清晰时直接研究；只有阻断性歧义才触发少量澄清问题。
-- **证据可追溯**：主张关联来源、原文、时间和适用条件，发现与建议关联主张 ID。
-- **未知 != 不支持**：功能状态区分 supported、partially_supported、unsupported、unknown、not_applicable。缺少证据不能当作否定证据。
-- **条件式建议**：没有自家资料或用户需求证据时，明确前提与假设，先提出验证方法。
-- **保留冲突**：不同时间的价格记录不会被静默覆盖，保留冲突与消解理由。
+> **什么是 Skill？** Skill 是一组可复用的 AI 工作流程与规则，用来告诉兼容的 AI 助手应该怎样完成某类任务。它不是独立 App，也不是所有 AI 聊天软件都能直接安装的普通提示词。
 
-这是约束研究行为的轻量技能，不是可保证事实正确的“反幻觉引擎”。verified 表示读取的来源支持主张，不代表独立实测。网页中的指令始终作为不可信资料处理。
+## 它能帮你做什么？
 
-## 快速使用
+- 比较不同产品或服务的功能、价格、套餐和使用体验；
+- 根据你的研究目标整理合适的比较维度；
+- 查找公开资料，尽量读取原始网页并注明来源；
+- 区分事实、厂商说法、分析推断和暂时无法确认的信息；
+- 把差异整理成清楚的报告，并在证据允许时提出有适用条件的建议。
 
-将 [skills/product-competitive-research](skills/product-competitive-research) 整个目录放入宿主支持的技能发现目录，保留 references、scripts、assets 的相对路径。具体安装位置由宿主决定；也可以在支持读取本地技能的会话中直接指定 [SKILL.md](skills/product-competitive-research/SKILL.md)。无需安装研究框架。
+已经通过真实模型测试的重点是**产品竞品分析**，包括明确维度比较、主动澄清和围绕用户任务的深度分析。Skill 的设计也能支持产品选型及其他公开市场信息整理，但行业规模、市场预测、消费者调查等更广泛场景尚未经过充分验证。
 
-示例请求：
+它适合需要比较产品、服务或公开市场信息的人，例如市场研究人员、产品与设计人员、运营和增长团队、创业者、独立开发者、学生，以及希望在选择工具或服务前做功课的普通用户。
 
-> 使用 product-competitive-research，对比指定两款工具的公开付费档位与同时编辑人数上限。记录资料时间、套餐口径和来源，未公开的上限标为未知。
+## 看一个真实例子
 
-在线研究由宿主提供搜索与网页读取能力；本仓库不捆绑搜索服务或自动申请 API Key。没有联网能力时，只分析用户提供的材料，不声称验证了最新信息。各宿主的自动发现、工具权限与运行行为需要分别验证。
+下面来自一次 V1.1 真实运行，内容经过节选，没有改写模型行为。
 
-默认交付是简洁的用户可读报告；需要审计或复用且环境可写时，可另存 research_contract.json 并运行结构校验。普通回答不强制内嵌完整 JSON。查看 [审计型离线样例](examples/case-03/report.md) 与 [对应数据](examples/case-03/research_contract.json)：该样例选择内嵌契约并使用合成数据，不能用于真实采购决策。
+**用户：**
 
-## 架构与数据流
+> 比较微信和小红书。
 
-```mermaid
-flowchart TD
-    A[用户请求与已有上下文] --> B{是否存在阻断性歧义}
-    B -->|是| C[1–2 个必要问题]
-    C -->|用户补充| A
-    B -->|否| D[确定范围和比较口径]
-    D --> E[读取公开来源或离线资料]
-    E --> F[原子主张 + 来源 + 时间 + 条件]
-    F --> G[未知标记与冲突处理]
-    G --> H[比较矩阵和关键发现]
-    H --> I[按需生成条件式建议]
-    I --> J[JSON 结构及关联校验]
-    J --> K[人工语义复核]
-    K --> L[Markdown + 完整 JSON 契约]
+**Skill 先澄清：**
+
+> 你更想从哪个角度比较微信和小红书：**内容推荐与搜索、社交关系与互动，还是商业推广与获客**？也可以直接说你想用这个比较做什么决策。
+
+**用户补充：**
+
+> 重点比较内容发现和搜索体验，面向内容产品规划。
+
+**真实运行节选：**
+
+> **面向内容产品规划，小红书更值得研究“发现兴趣后，如何继续搜索和比较”；微信更值得研究“如何连接多种内容与服务，承接不同搜索意图”。**这是基于公开产品结构的分析，不代表两者搜索效果已有实测排名。
+
+完整过程见[微信与小红书案例](examples/real-world/wechat-vs-xiaohongshu.md)。这是一次真实运行结果，不代表每次运行都会得到完全相同的表现。
+
+## 研究报告长什么样？
+
+下面是“B站与小红书收藏内容复访体验”报告的简短预览。
+
+| 报告部分 | 内容预览 |
+| --- | --- |
+| 研究目标 | 比较收藏内容、查找已收藏内容，以及后续重新使用内容的体验 |
+| 分析框架 | 保存 → 组织 → 找回内容 → 定位有用部分 → 实际使用 |
+| 主要发现 | B站更容易接上“继续观看、定位片段、复习知识”；小红书更贴近“归集攻略、现场查阅、共同决策” |
+| 设计建议 | 允许用户保存收藏理由、视频时间点、图片页或段落，并提供直接返回该位置的入口 |
+| 来源与限制 | 使用公开网页并注明来源；没有登录两款 App 做同版本实测，部分功能来自历史或第三方资料 |
+
+报告不会只罗列功能，而会尽量解释这些设计如何影响用户完成任务。查看[完整案例节选和证据限制](examples/real-world/bilibili-vs-xiaohongshu.md)。
+
+## 如何开始使用？
+
+你需要一个支持 Skills，并且能够访问 GitHub、读取和操作本地文件的 AI Agent。**AI Agent 就是你与 AI 对话、让它使用工具完成任务的软件。**如果需要研究最新公开信息，它还应具备网页搜索和正文读取能力。
+
+### 1. 复制项目地址
+
+打开本项目的 [GitHub 页面](https://github.com/Cineys/Product-Competitive-Research-Skill)，复制仓库地址：
+
+```text
+https://github.com/Cineys/Product-Competitive-Research-Skill.git
 ```
+
+### 2. 让 AI Agent 帮你安装
+
+把仓库地址和下面这段话发送给你的 AI Agent：
+
+```text
+请阅读这个 GitHub 项目，帮我安装其中的 Product Competitive Research Skill：
+https://github.com/Cineys/Product-Competitive-Research-Skill.git
+
+先检查你是否支持 Skills，并确认安装位置和依赖。安装完成后告诉我如何调用它。如果需要修改本地文件或执行命令，请先说明操作内容。
+```
+
+这一步要求 Agent 先检查自身能力，并不保证所有客户端都能自动安装。如果客户端无法访问 GitHub、不能操作文件，或者不支持 Skills，请根据该客户端的官方说明手动安装完整的 `skills/product-competitive-research` 文件夹。
+
+### 3. 开始使用
+
+安装完成后，新建一个会话并尝试：
+
+```text
+使用 Product Competitive Research Skill，比较微信和小红书的内容搜索体验。
+```
+
+不同客户端可能要求使用各自的调用语法，例如 Codex 的 `$product-competitive-research` 或 Claude Code 的 `/product-competitive-research`。首次使用建议显式指定 Skill，并确认客户端确实识别到它。
+
+> **安全提醒：**安装前确认项目来源；让 Agent 先检查文件和安装要求；执行命令或修改本地文件前，确认它准备进行的操作。自然语言安装不代表应授予 Agent 不受限制的电脑权限。
+
+## 如何向 Skill 提问？
+
+可以直接复制这些例子：
+
+```text
+帮我比较微信和小红书的内容搜索体验。
+
+比较 Figma 和 Sketch 的价格及团队协作功能。
+
+研究几款同类产品的主要差异，帮我整理成一份报告。
+
+分析 B站和小红书的收藏管理体验，重点关注用户如何再次找到收藏内容。
+```
+
+在 Codex 中，首次使用建议在问题前写：
+
+```text
+使用 $product-competitive-research，……
+```
+
+在 Claude Code 中使用：
+
+```text
+/product-competitive-research ……
+```
+
+Skill 也可能根据问题内容自动触发，但不同客户端的识别方式不同。明确写出 Skill 名称最容易确认本次回答确实使用了它。
+
+## Skill、客户端和网页工具的关系
+
+| 项目 | 作用 |
+| --- | --- |
+| Product Competitive Research Skill | 提供研究步骤、证据规则和报告方式 |
+| AI 客户端 | 运行 Skill，并让你与模型对话 |
+| 搜索与网页读取工具 | 帮助模型查找和读取公开资料 |
+| 模型 | 理解任务、调用工具并生成分析 |
+
+不是所有 AI 聊天软件都能安装 Skill。即使两个客户端都支持 Skill，它们也不一定拥有相同的搜索能力、页面读取工具、脚本权限或自动触发行为。
+
+当前真实模型测试主要在 Codex 环境完成，因此不能把测试结论直接视为 Claude Code 或其他客户端的测试结果。
+
+| 客户端 | 当前支持状态 |
+| --- | --- |
+| Codex | 已完成本项目的 Skill 加载和真实模型行为测试；自然语言安装仍取决于当前 Agent 的文件和命令权限 |
+| Claude Code | 官方机制支持同类 Skill 目录和显式调用；本项目尚未在该客户端运行测试 |
+| 其他 AI 客户端 | 尚未核实，不提供正式安装路径或兼容性承诺 |
+
+## 工作原理
+
+```text
+提出研究问题
+      ↓
+必要时澄清目标
+      ↓
+确定比较范围
+      ↓
+搜索并阅读公开资料
+      ↓
+比较差异
+      ↓
+整理发现与建议
+      ↓
+输出报告
+```
+
+证据核验的基本原则是：尽量读取原始网页，而不是只依赖搜索结果中的摘要。页面能够打开，不代表页面上的所有说法都已经得到验证；无法确认的信息应保留为未知或说明限制。
+
+默认输出是普通用户可以阅读的报告，不会强制附上一大段 JSON。需要复核研究过程、且客户端允许写文件时，才可以额外生成结构化的 `research_contract.json` 研究记录。
+
+## 已验证能力与使用限制
+
+已经完成：
+
+- 一次真实场景的主动澄清和多轮续接测试；
+- 一次真实网页环境下的深度竞品分析测试；
+- 一次 V1 与 V1.1 的固定资料比较 Pilot；
+- 56 项离线测试。
+
+需要注意：
+
+- 以上真实模型测试主要在 Codex 中完成，单次运行不能证明稳定性；
+- 官方来源身份判断规则已经补充，但修改后的模型行为尚未重新测试；
+- 公开资料研究不等于登录 App 后的实际体验测试；
+- 网页可能无法访问、内容可能过时，第三方资料也可能不准确；
+- 不同客户端的网页工具和运行效果可能不同；
+- Skill 和结构校验器都不能保证每条引用、结论或市场信息完全准确，重要决策仍应人工复核。
+
+## 开发者信息
+
+<details>
+<summary>项目结构、结构化研究记录与测试命令</summary>
 
 ```text
 skills/product-competitive-research/
-  SKILL.md                     工作流与字段契约入口
-  references/                  澄清、证据、分析规范
-  scripts/validate_research.py  确定性校验器
-  assets/report-template.md    分层报告与结构化记录规范
-tests/
-  cases/                       Case 1–4 输入与验收断言
-  fixtures/                    合成网页、SHA-256、Golden Record
-  evaluations/                 Case 1/4 单次模拟走查产物
-  test_*.py                    标准库回归测试
-  rubric.md                    隔离评测与语义评分流程
-examples/case-03/               新旧价格与未知状态完整示例
+  SKILL.md                      工作流入口
+  references/                   澄清、证据与分析规则
+  assets/report-template.md     报告模板
+  scripts/validate_research.py  结构化记录校验器
+tests/                          离线资料、回归测试与评测工具
+examples/                       合成样例与真实运行节选
 ```
 
-## 依赖与运行测试
+项目使用 Schema 1.1.0 定义可选的结构化研究记录。校验器只检查字段、状态和引用关系，不能判断事实是否真实或建议是否合理。
 
-- Python **3.10+**，全部测试和校验脚本仅使用标准库，无 pip 依赖。
-- 运行技能需要支持技能指令的 AI 宿主；实时研究需要其搜索/读取工具，服务费用与密钥由宿主或提供方决定。
-- 无必需的 Node.js、Browserbase、数据库、外部模型 SDK 或 jsonschema。
-- 离线测试不联网、不调用模型；所有 `.invalid` 地址只是测试资料身份。
-
-在仓库根目录运行：
-
-| 系统 | 命令 |
-| --- | --- |
-| Windows | `python -m unittest -v`（或 `py -3 -m unittest -v`） |
-| macOS / Linux | `python3 -m unittest -v` |
-
-若 Python 3 的命令名是 python，所有系统都可使用 `python -m unittest`。本次 Windows 环境的 python3 商店别名不可执行，已使用 python 运行验证。
-
-验证独立契约（macOS/Linux 可将 python 换成 python3）：
+Python 3.10+，不需要第三方依赖：
 
 ```sh
-python skills/product-competitive-research/scripts/validate_research.py examples/case-03/research_contract.json
+python3 -m unittest -v
+python3 skills/product-competitive-research/scripts/validate_research.py \
+  examples/case-03/research_contract.json
 ```
 
-退出码：0 表示确定性约束通过；1 表示契约违规；2 表示输入或命令行错误。错误输出包含字段路径或记录 ID。脚本不会请求来源 URL。
+Windows 可使用 `py -3` 或可用的 `python` 命令。完整合成样例见[报告](examples/case-03/report.md)和[结构化记录](examples/case-03/research_contract.json)。详细评测方法见 [rubric](tests/rubric.md)。
 
-## 评测结果与边界
+</details>
 
-回归测试覆盖 Golden Record、缺失证据、悬空 ID、非条件式建议、漏记价格冲突、不同计费口径、来源一致性及报告 JSON 一致性。
+版本变化见 [CHANGELOG](CHANGELOG.md)。本项目采用 [MIT License](LICENSE)。
 
-Case 1 与 Case 4 已完成**各一次人工模拟走查**，结果见 [验收记录](tests/evaluations/assessment.md)：模糊需求仅产生一个合并问题；混合攻击资料中的正常 10 人限制被保留，未采纳无限人数或外传指令，建议保持条件式。
+## 致谢
 
-这不是独立模型评测，也没有完成 rubric 中“三次隔离运行”的稳定性验证。保存的 trace 明确标注为模拟轨迹。可按 [rubric](tests/rubric.md) 在目标宿主执行后续独立验收。
+- [Anthropic Competitive Brief](https://github.com/anthropics/knowledge-work-plugins/blob/main/product-management/skills/competitive-brief/SKILL.md)
+- [Browserbase Competitor Analysis](https://github.com/browserbase/skills/blob/main/skills/competitor-analysis/SKILL.md)
+- [Agent Skills specification](https://agentskills.io/specification)
 
-结构校验不能判定引文真假、否定语义或建议是否合理；把伪造的 claim 标为 verified 并附上不相干原文，仍需要语义复核识别。当前不提供持续监控、登录后抓取、销售战卡或 PDF/PPT 导出。
-
-## 开源协作与许可证
-
-修改校验规则时添加合法与违规回归样本；修改研究行为时更新案例断言并记录语义评测。测试资料不得包含密钥、个人资料或未获许可的第三方全文。
-
-本项目采用 [MIT License](LICENSE)。当前交付为本地发布准备文件，尚未推送远端仓库或创建发行版。
-
-## 致谢与灵感来源
-
-- [Anthropic Competitive Brief（产品管理版）](https://github.com/anthropics/knowledge-work-plugins/blob/main/product-management/skills/competitive-brief/SKILL.md)：启发了以产品决策为中心的比较与战略含义组织方式。
-- [Browserbase Competitor Analysis](https://github.com/browserbase/skills/blob/main/skills/competitor-analysis/SKILL.md)：启发了研究过程中的来源组织、比较与关键证据复核。
-- [Agent Skills](https://agentskills.io/specification)：技能目录与渐进式资料加载规范。
-
-本仓库独立编写实现和合成测试资料，不包含以上项目的源码副本，也不依赖它们运行。致谢不代表上述组织背书；外部项目内容由各自许可证约束。
+本仓库独立编写实现和合成测试资料，不包含以上项目的源码副本，也不依赖它们运行；致谢不代表相关组织背书。
